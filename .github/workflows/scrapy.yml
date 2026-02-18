@@ -1,0 +1,22 @@
+name: Scrapy CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 2 * * *"   # run every day at 02:00 UTC
+  workflow_dispatch:
+
+jobs:
+  scrapy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t scrapy-bot .
+
+      - name: Run Scrapy spider
+        run: docker run --rm scrapy-bot
