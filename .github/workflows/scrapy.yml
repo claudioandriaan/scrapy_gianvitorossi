@@ -17,7 +17,7 @@ jobs:
 
       - name: Create output folder
         run: mkdir -p output
-        
+
       - name: Build Docker image
         run: docker build -t scrapy-bot .
 
@@ -25,6 +25,6 @@ jobs:
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/output:/app/output \
-            scrapy-bot crawl my_spider \
+            scrapy-bot crawl bot \
             -o output/$(date +%Y_%m_%d)_output.json
 
