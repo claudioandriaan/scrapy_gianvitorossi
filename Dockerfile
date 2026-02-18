@@ -7,4 +7,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["scrapy", "crawl", "bot"]
+ENTRYPOINT ["scrapy"]
+CMD ["crawl", "my_spider"]

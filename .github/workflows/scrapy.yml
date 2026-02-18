@@ -15,8 +15,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create output folder
+        run: mkdir -p output
+        
       - name: Build Docker image
         run: docker build -t scrapy-bot .
 
-      - name: Run Scrapy spider
-        run: docker run --rm scrapy-bot
+      - name: Run spider
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/output:/app/output \
+            scrapy-bot crawl my_spider \
+            -o output/$(date +%Y_%m_%d)_output.json
+
