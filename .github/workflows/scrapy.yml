@@ -3,9 +3,6 @@ name: Scrapy CI
 on:
   push:
   pull_request:
-  schedule:
-    - cron: "0 2 * * *"   # run every day at 02:00 UTC
-  workflow_dispatch:
 
 jobs:
   scrapy:
